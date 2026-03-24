@@ -1,12 +1,22 @@
 [
   {
-    "title": "Poker table OCR – real-time recognition",
-    "description": "Live demo of table scanning, stack and pot detection on a desktop client.",
-    "videoUrl": "videos/demo1.mp4"
+    "title": "Poker real-time Hand History Extraction",
+    "description": "Live demo of table OCR and hand history extraction on a desktop client for two instances of the same game.",
+    "videoUrl": "videos/Live Hand history Reader 2.mp4"
   },
   {
-    "title": "Hand history extraction",
-    "description": "From screen capture to structured hand history output.",
-    "videoUrl": "videos/demo2.mp4"
+    "title": "Poker real-time Hand History Extraction into an excel sheet",
+    "description": "Live demo of table OCR and hand history extraction into an excel sheet on a desktop client",
+    "videoUrl": "videos/Live Hand history Reader 5.mp4"
+  },
+  {
+    "title": "Poker real-time Hand History Extraction",
+    "description": "Live demo of table OCR and hand history extraction on a desktop client",
+    "videoUrl": "videos/Live Hand history Reader 3.mp4"
+  },
+  {
+    "title": "Poker real-time Hand History Extraction and playing with Monker Solver solutions live",
+    "description": "Live demo of table OCR, hand history extraction and playing with Monker Solver solutions on a desktop client",
+    "videoUrl": "videos/PLO4 BOT with Monker Solver.mp4"
   }
 ]

@@ -1,6 +1,6 @@
 # How to Add Demo Videos to the Website
 
-Videos and their descriptions are driven by **`demos.json`**. When you load the website, the "Demo Videos & Previous Work" section is filled from that file.
+Videos and their descriptions are driven by **`demos.json`**. When you use **Vite** (`npm run dev` / production build), the site loads **`public/demos.json`** only—a copy in the project root is **not** used and will not show up on the site.
 
 ---
 
@@ -12,9 +12,7 @@ Videos and their descriptions are driven by **`demos.json`**. When you load the 
   - `public/videos/demo1.mp4`
   - `public/videos/table-scan.mp4`
 
-**If you use another server** (e.g. Python) from the project root:
-
-- Put videos in a **`videos`** folder next to `index.html` (e.g. `videos/demo1.mp4`).
+**If you use another server** without Vite: run **`npm run build`** and serve the **`dist/`** folder (videos end up at `/videos/…` next to the built `index.html`). Plain `python -m http.server` from the repo root does not map `public/videos/` to `/videos/` unless you mirror that layout or use the build output.
 
 Use **MP4 (H.264)** for best browser support.
 
@@ -33,7 +31,7 @@ Add or edit entries. Each demo is an object with:
 | `title`       | Yes      | Short title shown above the video. |
 | `description` | Yes      | One or two sentences describing the demo. |
 | `videoUrl`    | Yes      | Path to your video file (e.g. `videos/demo1.mp4`) or a YouTube/Vimeo link. |
-| `thumbnailUrl`| No       | Optional poster image for local MP4s (e.g. `videos/demo1-poster.jpg`). |
+| `thumbnailUrl`| No       | Optional custom poster image (URL or path). If omitted, the site grabs a frame from the MP4 (~4% into the clip) and uses it as the poster. |
 
 ### Example – local video
 

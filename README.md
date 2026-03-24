@@ -75,7 +75,7 @@ cd poker-ocr-website
 python -m http.server 8080
 ```
 
-Then open **http://localhost:8080**. For demos/videos to work, use the same structure as in `public/` (e.g. `demos.json` and `videos/` at the same level as `index.html`).
+Then open **http://localhost:8080**. For demos and `/videos/…` URLs to resolve, prefer **`npm run dev`** or serve the **`dist/`** output after **`npm run build`** (see VIDEO-GUIDE.md). Serving only the repo root without a build does not expose `public/videos/` at `/videos/`.
 
 ### npx serve
 
