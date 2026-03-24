@@ -32,6 +32,8 @@ Then open **http://localhost:5173** in your browser. Vite will open it automatic
 2. Upload the contents of the **`dist/`** folder to your hosting (Netlify, Vercel, GitHub Pages, any static host).
 3. No server-side config needed; it’s static HTML, CSS, and assets.
 
+**Ask a question** on the site posts through [FormSubmit](https://formsubmit.co/) to **azbvision.zain@gmail.com**. The first time someone submits, check that inbox and **confirm the FormSubmit activation link** so later submissions are delivered.
+
 ### GitHub Pages (Git-based deploy)
 
 **Repository:** [github.com/azbvision/Poker-OCR-Website](https://github.com/azbvision/Poker-OCR-Website)  

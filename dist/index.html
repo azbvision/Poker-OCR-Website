@@ -93,7 +93,7 @@
             "name": "Does it provide equity and stats?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes."
+              "text": "Yes, it can provide those."
             }
           },
           {
@@ -101,7 +101,7 @@
             "name": "Is it modular?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes."
+              "text": "Yes—it is developed in modules."
             }
           },
           {
@@ -109,7 +109,7 @@
             "name": "What do you need to start?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Visual samples and expected outputs."
+              "text": "Desktop video recording, expected hand history output formats, and preferred solution providers."
             }
           }
         ]
@@ -785,6 +785,127 @@
       .contact-methods {
         grid-template-columns: 1fr 1fr;
       }
+    }
+
+    .ask-question-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-top: 1.5rem;
+      box-shadow: var(--shadow-card);
+    }
+
+    .ask-question-card h3 {
+      margin-top: 0;
+      margin-bottom: 0.35rem;
+    }
+
+    .ask-question-card .ask-lead {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin: 0 0 1.25rem;
+    }
+
+    .ask-form .form-row {
+      margin-bottom: 1rem;
+    }
+
+    .ask-form label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 0.4rem;
+    }
+
+    .ask-form .optional {
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .ask-form input[type="text"],
+    .ask-form input[type="email"],
+    .ask-form textarea {
+      width: 100%;
+      box-sizing: border-box;
+      background: var(--bg-deep);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 1rem;
+      padding: 0.65rem 0.85rem;
+    }
+
+    .ask-form textarea {
+      min-height: 7rem;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .ask-form input:focus,
+    .ask-form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.25);
+    }
+
+    .ask-form .hp-field {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      opacity: 0;
+    }
+
+    .ask-form .form-actions {
+      margin-top: 1.25rem;
+    }
+
+    .ask-form button[type="submit"] {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #0d1117;
+      border: none;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+    }
+
+    .ask-form button[type="submit"]:hover:not(:disabled) {
+      filter: brightness(1.08);
+    }
+
+    .ask-form button[type="submit"]:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .question-form-status {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .question-form-status.is-success {
+      color: #3fb950;
+    }
+
+    .question-form-status.is-error {
+      color: #f85149;
+    }
+
+    .ask-fallback {
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
     }
 
     /* Nav */
@@ -1559,6 +1680,7 @@
           <a href="#clients"><i class="fa-solid fa-user-group" aria-hidden="true"></i> Clients</a>
           <a href="#tech"><i class="fa-solid fa-server" aria-hidden="true"></i> Tech</a>
           <a href="#faq"><i class="fa-regular fa-circle-question" aria-hidden="true"></i> FAQ</a>
+          <a href="#ask-question"><i class="fa-regular fa-comment-dots" aria-hidden="true"></i> Ask</a>
           <a href="#contact" class="nav-cta"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact</a>
         </span>
       </div>
@@ -1798,15 +1920,15 @@
         </div>
         <div class="faq-item">
           <h3>Does it provide equity and stats?</h3>
-          <p>Yes.</p>
+          <p>Yes, it can provide those.</p>
         </div>
         <div class="faq-item">
           <h3>Is it modular?</h3>
-          <p>Yes.</p>
+          <p>Yes—it is developed in modules.</p>
         </div>
         <div class="faq-item">
           <h3>What do you need to start?</h3>
-          <p>Visual samples and expected outputs.</p>
+          <p>Desktop video recording, expected hand history output formats, and preferred solution providers.</p>
         </div>
       </div>
     </section>
@@ -1816,6 +1938,36 @@
       <h2>Start a project</h2>
       <p><strong>Hourly preferred</strong>; milestone structure optional. Typical inputs: screenshots or videos, platform details, and expected outputs. Deliverables can be individual modules or a full pipeline.</p>
       <p>If you need extraction, hand-history reconstruction, solver integration, stats and equity, or offline analysis, send a focused inquiry.</p>
+
+      <div class="ask-question-card" id="ask-question">
+        <h3>Ask a question</h3>
+        <p class="ask-lead">Short questions only&mdash;we will email you back when we can. Add your email if you want a reply.</p>
+        <form id="question-form" class="ask-form" action="https://formsubmit.co/azbvision.zain@gmail.com" method="POST" novalidate>
+          <input type="hidden" name="_subject" value="Question from Poker OCR website">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="form-row">
+            <label for="q-name">Name <span class="optional">(optional)</span></label>
+            <input type="text" id="q-name" name="name" maxlength="120" autocomplete="name">
+          </div>
+          <div class="form-row">
+            <label for="q-email">Email <span class="optional">(optional)</span></label>
+            <input type="email" id="q-email" name="email" maxlength="254" autocomplete="email" placeholder="you@example.com">
+          </div>
+          <div class="form-row">
+            <label for="q-message">Your question</label>
+            <textarea id="q-message" name="message" required maxlength="4000" placeholder="What would you like to know?"></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" id="q-submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send question</button>
+          </div>
+        </form>
+        <p id="question-form-status" class="question-form-status" role="status" aria-live="polite" hidden></p>
+        <p class="ask-fallback">Prefer email? <a href="mailto:azbvision.zain@gmail.com" class="email">azbvision.zain@gmail.com</a></p>
+        <noscript>
+          <p class="ask-fallback">Submit the form to send your question (you may be redirected briefly), or email <a href="mailto:azbvision.zain@gmail.com" class="email">azbvision.zain@gmail.com</a>.</p>
+        </noscript>
+      </div>
 
       <div class="cta-section">
         <div class="section-icon"><i class="fa-solid fa-handshake" aria-hidden="true"></i></div>
@@ -1906,6 +2058,50 @@
         });
         fiverrCoverEl.addEventListener('error', function () {
           fiverrCoverEl.remove();
+        });
+      }
+
+      var qForm = document.getElementById('question-form');
+      var qSubmit = document.getElementById('q-submit');
+      var qStatus = document.getElementById('question-form-status');
+      var qMsg = document.getElementById('q-message');
+      if (qForm && qStatus) {
+        qForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          if (!qMsg || !(qMsg.value || '').trim()) {
+            qStatus.hidden = false;
+            qStatus.className = 'question-form-status is-error';
+            qStatus.textContent = 'Please enter your question.';
+            return;
+          }
+          var fd = new FormData(qForm);
+          if (qSubmit) qSubmit.disabled = true;
+          qStatus.hidden = false;
+          qStatus.className = 'question-form-status';
+          qStatus.textContent = 'Sending…';
+          fetch('https://formsubmit.co/ajax/azbvision.zain@gmail.com', {
+            method: 'POST',
+            body: fd,
+            headers: { Accept: 'application/json' },
+          })
+            .then(function (res) {
+              return res.json().then(function (data) {
+                if (!res.ok) throw new Error((data && data.message) || 'Send failed');
+                return data;
+              });
+            })
+            .then(function () {
+              qStatus.className = 'question-form-status is-success';
+              qStatus.textContent = 'Thanks! Your question was sent. We will get back to you when we can.';
+              qForm.reset();
+            })
+            .catch(function () {
+              qStatus.className = 'question-form-status is-error';
+              qStatus.textContent = 'Could not send right now. Try again or email azbvision.zain@gmail.com.';
+            })
+            .finally(function () {
+              if (qSubmit) qSubmit.disabled = false;
+            });
         });
       }
 
