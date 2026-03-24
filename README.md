@@ -34,12 +34,23 @@ Then open **http://localhost:5173** in your browser. Vite will open it automatic
 
 ### GitHub Pages (Git-based deploy)
 
-1. Create a **new repository** on GitHub and push this project (`main` branch).
-2. In the repo: **Settings → Pages → Build and deployment → Source:** choose **GitHub Actions**.
-3. Push to `main` (or merge a PR). The workflow [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) runs `npm ci`, `npm run build`, and publishes **`dist/`**.
-4. After the first run, your site is at **`https://<username>.github.io/<repo>/`** (unless the repo is **`<username>.github.io`**, then it is **`https://<username>.github.io/`**).
+**Repository:** [github.com/azbvision/Poker-OCR-Website](https://github.com/azbvision/Poker-OCR-Website)  
+**Default site URL (no custom domain):** `https://azbvision.github.io/Poker-OCR-Website/`
 
-**Custom domain (e.g. azbvision.com)** on a normal project repo: GitHub serves the site from the domain root, so set a repository variable **`VITE_BASE_PATH`** to **`/`** ( **Settings → Secrets and variables → Actions → Variables** ). Otherwise asset URLs keep the `/<repo>/` prefix and can break.
+1. Clone or push this project to the repo above (`main` branch). Remote example:
+   ```powershell
+   git remote add origin https://github.com/azbvision/Poker-OCR-Website.git
+   ```
+   If you **renamed** the repo on GitHub, update your local remote:
+   ```powershell
+   git remote set-url origin https://github.com/azbvision/Poker-OCR-Website.git
+   git remote -v
+   ```
+2. In the repo: **Settings → Pages → Build and deployment → Source:** choose **GitHub Actions**.
+3. Push to `main` (or merge a PR). The workflow [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) runs `npm ci`, `npm run build`, and publishes **`dist/`**. The build sets Vite’s `base` to **`/Poker-OCR-Website/`** automatically for that URL.
+4. After the first successful run, open **`https://azbvision.github.io/Poker-OCR-Website/`** (unless the repo is **`azbvision.github.io`**, then the site is **`https://azbvision.github.io/`**).
+
+**Custom domain (e.g. azbvision.com)** on this project repo: GitHub serves the site from the domain root, so set a repository variable **`VITE_BASE_PATH`** to **`/`** ( **Settings → Secrets and variables → Actions → Variables** ). Otherwise asset URLs keep the `/Poker-OCR-Website/` prefix and can break on the custom domain.
 
 **Canonical / SEO URLs** in `index.html` use `https://azbvision.com/`; update those if your live URL is only `github.io`.
 
