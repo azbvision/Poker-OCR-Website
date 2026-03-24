@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Poker OCR &amp; Poker Automation | GTO Suggestions, Stats, Equity &amp; Solvers</title>
-  <meta name="description" content="Custom poker OCR, poker automation, and solver integration with GTO suggestions, stats, and equity readouts. Screen to hand history to strategy outputs—built for real environments. https://azbvision.com">
+  <title>Poker OCR to GTO Insights | Custom Poker Vision &amp; Hand Histories</title>
+  <meta name="description" content="Custom poker OCR and computer vision: table visuals to structured hand histories and analytics. Screen → hand history → solver → GTO suggestions, equity, and stats. https://azbvision.com">
   <link rel="canonical" href="https://azbvision.com/">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#0d1117">
-  <meta property="og:title" content="Poker OCR &amp; Poker Automation | GTO, Stats, Equity &amp; Solvers">
-  <meta property="og:description" content="Custom poker OCR, poker automation, and solver-connected pipelines with GTO suggestions, statistics, and equity—for developers and researchers.">
+  <meta property="og:title" content="Poker OCR to GTO Insights | Custom Poker Data &amp; Vision">
+  <meta property="og:description" content="Table pixels to structured hand histories, solver integration, and GTO suggestions, equity, and stats—built for real tables.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://azbvision.com/">
   <meta property="og:image" content="https://azbvision.com/images/og.svg">
-  <meta property="og:image:alt" content="Poker OCR to solver pipeline">
+  <meta property="og:image:alt" content="Poker OCR to GTO insights pipeline">
   <meta property="og:locale" content="en_US">
   <meta property="og:site_name" content="Poker OCR">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Poker OCR &amp; Poker Automation | Poker AI &amp; Solvers">
-  <meta name="twitter:description" content="Custom poker OCR, automation, GTO suggestions, stats, equity, and solver pipelines for permitted analysis and tooling.">
+  <meta name="twitter:title" content="Poker OCR to GTO Insights | Custom Vision Systems">
+  <meta name="twitter:description" content="Custom poker OCR and vision: hand histories, solver integration, GTO suggestions, equity, and stats for analysis and research.">
   <meta name="twitter:image" content="https://azbvision.com/images/og.svg">
   <script type="application/ld+json">
   {
@@ -29,7 +29,7 @@
         "@id": "https://azbvision.com/#website",
         "url": "https://azbvision.com/",
         "name": "Poker OCR — Custom pipelines",
-        "description": "Custom poker OCR, poker automation, GTO suggestions, stats, equity readouts, and poker AI / solver integration for developers and researchers.",
+        "description": "Custom poker OCR and computer vision: structured hand histories, solver integration, GTO suggestions, equity, and stats for developers and researchers.",
         "publisher": { "@id": "https://azbvision.com/#organization" },
         "inLanguage": "en-US"
       },
@@ -39,14 +39,14 @@
         "name": "Custom Poker OCR development",
         "url": "https://azbvision.com/",
         "email": "azbvision.zain@gmail.com",
-        "description": "Custom software for poker OCR, computer vision, hand history reconstruction, poker automation, GTO suggestions, statistics, equity displays, and poker AI / GTO solver integration in permitted environments.",
+        "description": "Custom software for poker OCR, computer vision, hand history reconstruction, solver and GTO integration, stats and equity, for analysis and research in permitted environments.",
         "areaServed": { "@type": "Place", "name": "Worldwide" },
         "serviceType": [
           "Poker OCR development",
-          "Poker automation",
           "Computer vision consulting",
-          "Poker AI and solver integration",
-          "GTO suggestions, stats, and equity tooling"
+          "Hand history reconstruction",
+          "Solver and GTO integration",
+          "Stats, equity, and analytics pipelines"
         ],
         "sameAs": [
           "https://www.fiverr.com/hasanaat/do-poker-table-ocr"
@@ -61,15 +61,15 @@
             "name": "Do you need API access?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. The stack works directly from the screen; APIs are optional when you have them."
+              "text": "No. It works directly from the screen."
             }
           },
           {
             "@type": "Question",
-            "name": "Can it handle animations and missing data?",
+            "name": "Can it handle animations and delays?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes—that is handled in the Reader logic and related processing layers."
+              "text": "Yes. That is handled in the Reader logic."
             }
           },
           {
@@ -85,15 +85,15 @@
             "name": "Can it integrate with solvers?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes—via API, local datasets, or scraping, depending on your setup."
+              "text": "Yes—via API, local data, or scraping."
             }
           },
           {
             "@type": "Question",
-            "name": "Can AI models be used?",
+            "name": "Does it provide equity and stats?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. GPT-style models can be integrated for decision logic when that fits the engagement."
+              "text": "Yes."
             }
           },
           {
@@ -101,7 +101,7 @@
             "name": "Is it modular?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. Each component can run independently or as part of a full pipeline."
+              "text": "Yes."
             }
           },
           {
@@ -109,7 +109,7 @@
             "name": "What do you need to start?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Visual samples (screenshots or recordings) and a clear description of expected outputs."
+              "text": "Visual samples and expected outputs."
             }
           }
         ]
@@ -648,34 +648,60 @@
       border-radius: 50%;
     }
 
-    /* Use case grid */
+    /* Who this is for — readable 2×2 grid on larger viewports */
     .use-cases {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
+      grid-template-columns: 1fr;
+      gap: 1.15rem;
       margin-top: 1.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .use-cases {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     .use-case-card {
       display: flex;
-      gap: 1rem;
+      flex-direction: column;
       align-items: flex-start;
+      gap: 0;
+      height: 100%;
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem;
+      border-radius: var(--radius-lg);
+      padding: 1.35rem 1.25rem 1.4rem;
       box-shadow: var(--shadow-card);
     }
 
     .use-case-card strong {
       color: var(--text-primary);
-      font-size: 0.9rem;
+      font-size: 0.98rem;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 0.65rem;
     }
 
-    .use-case-card p {
-      margin: 0.35rem 0 0;
-      font-size: 0.85rem;
-      color: var(--text-muted);
+    .use-case-meta {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .use-case-meta + .use-case-meta {
+      margin-top: 0.55rem;
+    }
+
+    .use-case-meta .use-case-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.2rem;
     }
 
     /* Tech stack */
@@ -738,6 +764,14 @@
 
     .contact-box .email:hover {
       text-decoration: underline;
+    }
+
+    .contact-box .contact-id {
+      margin: 0;
+      font-weight: 600;
+      color: var(--accent);
+      word-break: break-all;
+      font-size: inherit;
     }
 
     .contact-methods {
@@ -945,9 +979,9 @@
     }
 
     .use-case-icon {
-      width: 40px;
-      height: 40px;
-      min-width: 40px;
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
       border-radius: var(--radius);
       background: var(--bg-elevated);
       border: 1px solid var(--border);
@@ -955,7 +989,8 @@
       align-items: center;
       justify-content: center;
       color: var(--accent);
-      font-size: 1rem;
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
     }
 
     .contact-box {
@@ -1298,65 +1333,6 @@
       justify-content: center;
     }
 
-    .pillar-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    @media (min-width: 640px) {
-      .pillar-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    #solution .pillar-grid {
-      grid-template-columns: 1fr;
-    }
-
-    @media (min-width: 700px) {
-      #solution .pillar-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    .pillar-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 1.5rem;
-      box-shadow: var(--shadow-card);
-      border-left-width: 3px;
-      border-left-color: var(--border);
-    }
-
-    .pillar-card--eye {
-      border-left-color: var(--accent);
-    }
-
-    .pillar-card--reader {
-      border-left-color: var(--accent-gold);
-    }
-
-    .pillar-card--strategy {
-      border-left-color: var(--stage-strategy);
-    }
-
-    .pillar-card--action {
-      border-left-color: var(--stage-action);
-    }
-
-    .pillar-card h3 {
-      margin-top: 0;
-      color: var(--text-primary);
-      font-size: 1.05rem;
-    }
-
-    .pillar-card p:last-child {
-      margin-bottom: 0;
-    }
-
     .nav-links {
       flex-wrap: wrap;
       justify-content: flex-end;
@@ -1439,6 +1415,10 @@
 
     .module-card--action {
       border-left-color: var(--stage-action);
+    }
+
+    .module-card--stats {
+      border-left-color: var(--accent-gold);
     }
 
     .module-card--offline {
@@ -1575,7 +1555,7 @@
           </span>
           <a href="#overview"><i class="fa-solid fa-book-open" aria-hidden="true"></i> Overview</a>
           <a href="#process"><i class="fa-solid fa-route" aria-hidden="true"></i> Process</a>
-          <a href="#modules"><i class="fa-solid fa-cubes" aria-hidden="true"></i> Modules</a>
+          <a href="#modules"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i> Pipeline</a>
           <a href="#clients"><i class="fa-solid fa-user-group" aria-hidden="true"></i> Clients</a>
           <a href="#tech"><i class="fa-solid fa-server" aria-hidden="true"></i> Tech</a>
           <a href="#faq"><i class="fa-regular fa-circle-question" aria-hidden="true"></i> FAQ</a>
@@ -1589,16 +1569,16 @@
     <header>
       <div class="hero-wrap">
         <div class="hero-top-copy">
-          <p class="hero-kicker">Built for real environments, not ideal conditions.</p>
-          <p class="hero-tag">Custom Poker Vision &amp; Automation</p>
-          <h1>Poker OCR to Solver Pipeline</h1>
+          <p class="hero-kicker">Designed for real tables, not ideal inputs.</p>
+          <p class="hero-tag">Custom Poker Data &amp; Vision Systems</p>
+          <h1>Poker OCR to GTO Insights</h1>
         </div>
         <div class="hero-figure-block">
-          <img class="hero-pipeline-img" src="images/hero-pipeline.png" alt="Pipeline diagram: screen capture and OCR through hand history, solver integration, and GTO-style outputs." width="1200" height="675" loading="eager" decoding="async">
+          <img class="hero-pipeline-img" src="images/hero-pipeline.png" alt="Pipeline diagram: screen capture and OCR through hand history, solver integration, stats and equity." width="1200" height="675" loading="eager" decoding="async">
         </div>
         <div class="hero-after-image">
-          <p class="hero-sub">Extract table data, reconstruct hand histories, and connect to solver logic in a single pipeline.</p>
-          <p class="hero-desc">I build custom poker computer vision systems that extract, reconstruct, and act on real game data—focused on end-to-end pipelines: screen → hand history → solver → GTO suggestions, stats, and equity.</p>
+          <p class="hero-sub">Extract table data, reconstruct hand histories, and generate GTO suggestions, equity, and stats in one pipeline.</p>
+          <p class="hero-desc">I build custom poker OCR and computer vision systems that convert table visuals into structured hand histories and analytical outputs. <strong>End-to-end pipeline:</strong> screen → hand history → solver → GTO suggestions, equity, and stats.</p>
         </div>
         <div class="hero-preview-row" aria-label="Demo thumbnails and Fiverr gig preview">
           <div class="hero-preview-demos">
@@ -1622,14 +1602,14 @@
       </div>
     </header>
 
-    <p class="disclaimer-bar"><strong>This site does not promote gambling.</strong> Systems can be built for analysis, research, or automation where permitted. Offline analysis tools are intended for study and review. There is no guarantee of compliance with third-party platform terms—clients are responsible for platform compliance and lawful use. Custom software engineering for vision, data extraction, and automation in private or licensed environments.</p>
+    <p class="disclaimer-bar"><strong>This site does not promote gambling.</strong> Systems are intended for <strong>analysis and research</strong> use. <strong>Offline</strong> modes are suitable for study and review. <strong>Clients are responsible</strong> for compliance with third-party platform terms and lawful use.</p>
 
     <section id="overview">
       <div class="section-icon"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></div>
       <h2>Overview</h2>
-      <p>I build custom <strong>poker OCR</strong> and <strong>poker automation</strong> systems that turn table visuals into structured, actionable data—plus <strong>GTO suggestions</strong>, <strong>statistics</strong>, and <strong>equity</strong> readouts and <strong>poker AI</strong> / solver-connected paths for permitted tooling. The pipeline starts with <strong>Poker Eye</strong>, which extracts cards, stacks, bets, and UI states directly from the screen using OCR and image processing. <strong>Poker Reader</strong> then converts this raw data into complete hand histories by tracking sequences, applying game logic, and handling missing or delayed information.</p>
-      <p>From there, the system connects to solver logic through APIs, local datasets, live scraping, or AI models to drive strategy outputs—surfaced as <strong>GTO-aligned suggestions</strong>, <strong>stats</strong>, and <strong>equity</strong> views for study, review, and analysis workflows.</p>
-      <p>Each component can run independently or as a full pipeline, supporting both live and offline use cases—built for real environments, handling complex layouts, animations, and inconsistencies without relying on direct platform access.</p>
+      <p>I build custom <strong>poker OCR</strong> and <strong>computer vision</strong> systems that convert table visuals into structured, usable data. The process starts with <strong>Poker Eye</strong>, which extracts cards, stacks, bets, and UI elements directly from the screen. <strong>Poker Reader</strong> then reconstructs complete hand histories by tracking actions, sequencing events, and handling missing or delayed information.</p>
+      <p>Those hand histories are mapped to solver logic using APIs, local solutions, or scraping methods to generate <strong>GTO-based suggestions</strong>. A dedicated <strong>stats and equity</strong> layer computes win probabilities and aggregates gameplay metrics, turning raw data into meaningful insights.</p>
+      <p>The system is <strong>modular</strong> and can run in <strong>real time or offline</strong>, depending on the use case. It is built for <strong>real environments</strong>—handling UI inconsistencies, animations, and the absence of direct data access.</p>
       <p class="overview-jump"><a href="#outcomes">Primary outcomes</a> · <a href="#glossary">Glossary</a></p>
     </section>
 
@@ -1638,16 +1618,16 @@
       <h2>Primary outcomes</h2>
       <p>What engagements are optimized to deliver—pick the subset that matches your product.</p>
       <ul>
-        <li>High-accuracy extraction of cards, stacks, bets, and positions from screen</li>
-        <li>Structured, time-sequenced hand histories from raw visuals</li>
-        <li>Real-time or offline processing pipelines</li>
-        <li>Direct mapping of game states to solver decisions and GTO-style suggestions</li>
-        <li>GTO suggestions, statistics, and equity tied to reconstructed spots</li>
-        <li>Reduced manual tagging and data entry</li>
-        <li>Scalable data collection for analysis or training</li>
-        <li>Modular components usable independently or integrated</li>
-        <li>Works without APIs (screen-based) or with APIs when available</li>
-        <li>Handles animations, partial states, and edge cases</li>
+        <li>Accurate extraction of cards, stacks, bets, and positions from screen</li>
+        <li>Clean, structured hand histories with correct action sequencing</li>
+        <li>Real-time or offline processing</li>
+        <li>Mapping of game states to GTO-based suggestions</li>
+        <li>Equity calculations per decision point</li>
+        <li>Automated stat generation from parsed hands</li>
+        <li>Reduced manual effort in tagging and reconstruction</li>
+        <li>Scalable data pipelines for analysis and training</li>
+        <li>Works without APIs; supports API integration if available</li>
+        <li>Handles animations, delays, and incomplete data</li>
       </ul>
     </section>
 
@@ -1659,19 +1639,23 @@
         <summary>Terms at a glance</summary>
         <dl class="glossary-grid">
           <dt>OCR</dt>
-          <dd>Extracting text and numbers from the screen.</dd>
+          <dd>Extracts text and numbers from screen images.</dd>
           <dt>Computer vision</dt>
-          <dd>Detecting visual elements such as cards and UI components.</dd>
+          <dd>Detects visual elements like cards and UI components.</dd>
           <dt>Hand history</dt>
-          <dd>Structured sequence of actions in a poker hand.</dd>
+          <dd>Structured sequence of actions in a hand.</dd>
           <dt>Poker Eye</dt>
-          <dd>Visual extraction layer (OCR + image processing).</dd>
+          <dd>Visual extraction module.</dd>
           <dt>Poker Reader</dt>
-          <dd>Logic and sequencing engine for hand histories.</dd>
+          <dd>Hand reconstruction engine.</dd>
           <dt>Solver integration</dt>
-          <dd>Mapping game states to strategy outputs (API, files, scraping, or models).</dd>
-          <dt>GTO suggestions, stats &amp; equity</dt>
-          <dd>Presentation layer for solver-backed lines, frequencies, statistics, and equity—aligned to the current table state.</dd>
+          <dd>Mapping states to strategy outputs.</dd>
+          <dt>GTO suggestions</dt>
+          <dd>Optimal decisions from solver logic.</dd>
+          <dt>Equity</dt>
+          <dd>Win probability at a decision point.</dd>
+          <dt>Stats</dt>
+          <dd>Aggregated gameplay metrics.</dd>
         </dl>
       </details>
     </section>
@@ -1679,71 +1663,47 @@
     <section id="process" class="section--muted">
       <div class="section-icon"><i class="fa-solid fa-route" aria-hidden="true"></i></div>
       <h2>Process &amp; timeline</h2>
-      <p>From requirements through delivery—aligned to how modular pipelines are actually built.</p>
+      <p>From requirements through delivery—aligned to how modular pipelines are built.</p>
       <ol class="process-list">
-        <li>Requirements + sample review</li>
+        <li>Requirement review + sample analysis</li>
         <li>Poker Eye development (data extraction)</li>
-        <li>Poker Reader development (logic + sequencing)</li>
-        <li>Solver integration (API / scraping / AI model)</li>
-        <li>Optional GTO suggestions, stats &amp; equity layer</li>
-        <li>Testing on real scenarios</li>
-        <li>Iteration + delivery</li>
+        <li>Poker Reader development (hand reconstruction)</li>
+        <li>Solver integration (API / local / scraping)</li>
+        <li>Stats &amp; equity implementation</li>
+        <li>Testing with real scenarios</li>
+        <li>Iteration and final delivery</li>
       </ol>
     </section>
 
-    <section id="solution">
-      <div class="section-icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></div>
-      <h2>Modular pipeline</h2>
-      <p>End-to-end flow is <strong>Eye → Reader → Solver → GTO UI</strong> (suggestions, stats, equity). You can engage for one module or the full chain. For concrete deliverables and scopes, see <a href="#modules">Modules &amp; services</a> below.</p>
-      <div class="pillar-grid">
-        <div class="pillar-card pillar-card--eye">
-          <h3>Poker Eye</h3>
-          <p>Detects and extracts relevant visual elements—cards, stacks, bets, positions, UI states—using OCR and image processing, without requiring platform APIs or internal access.</p>
-        </div>
-        <div class="pillar-card pillar-card--reader">
-          <h3>Poker Reader</h3>
-          <p>Converts raw extractions into structured, chronological hand histories with game logic, sequence tracking, and inference for missing or asynchronous signals.</p>
-        </div>
-        <div class="pillar-card pillar-card--strategy">
-          <h3>Solver integration</h3>
-          <p>Connects hand states to strategy via API, local datasets, live parallel scraping, or model-based decision paths—translating real situations into actionable outputs.</p>
-        </div>
-        <div class="pillar-card pillar-card--action">
-          <h3>GTO suggestions, stats &amp; equity (optional)</h3>
-          <p>Surfaces solver-backed suggestions, statistics, and equity for the live or reviewed spot—so strategy output is readable and actionable in your workflow.</p>
-        </div>
-      </div>
-    </section>
-
     <section id="modules" class="section--muted">
-      <div class="section-icon"><i class="fa-solid fa-cubes" aria-hidden="true"></i></div>
-      <h2>Modules &amp; services</h2>
-      <p>Each block solves a specific gap; combine them for a full pipeline.</p>
+      <div class="section-icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></div>
+      <h2>Modular pipeline &amp; services</h2>
+      <p>End-to-end flow is <strong>Eye → Reader → Solver → Stats/Equity</strong>. Engage for one module or the full chain—each block below solves a specific gap.</p>
       <div class="module-grid">
         <div class="module-card module-card--eye">
-          <h3>Poker Eye</h3>
-          <p class="module-desc">Computer vision / OCR: detects and extracts all relevant visual elements from the table—cards, stacks, bets, positions, UI states.</p>
-          <p class="module-solves"><strong>Solves:</strong> A reliable data layer without requiring APIs or internal access.</p>
+          <h3>Poker Eye (OCR / computer vision)</h3>
+          <p class="module-desc">Extracts cards, stacks, bets, positions, and UI states directly from table visuals.</p>
+          <p class="module-solves"><strong>Solves:</strong> Removes dependency on APIs by reading raw screen data.</p>
         </div>
         <div class="module-card module-card--reader">
-          <h3>Poker Reader</h3>
-          <p class="module-desc">Hand history engine: converts raw extractions into structured, chronological histories with game logic, sequence tracking, and inference.</p>
-          <p class="module-solves"><strong>Solves:</strong> Full game flow from incomplete or asynchronous visual signals.</p>
+          <h3>Poker Reader (hand history engine)</h3>
+          <p class="module-desc">Converts extracted data into structured hand histories by tracking actions, sequencing events, and resolving missing information.</p>
+          <p class="module-solves"><strong>Solves:</strong> Rebuilds full hand flow from imperfect visual input.</p>
         </div>
         <div class="module-card module-card--strategy">
-          <h3>Solver integration</h3>
-          <p class="module-desc">Connects reconstructed states to solver strategies via API, local datasets, live parallel scraping, or GPT-style decision models.</p>
-          <p class="module-solves"><strong>Solves:</strong> Turning real game situations into actionable strategy outputs.</p>
+          <h3>Solver integration + GTO engine</h3>
+          <p class="module-desc">Maps hand states to solver outputs via API, local solutions, or parallel scraping to generate GTO suggestions.</p>
+          <p class="module-solves"><strong>Solves:</strong> Connects real gameplay data to optimal strategy decisions.</p>
         </div>
-        <div class="module-card module-card--action">
-          <h3>GTO suggestions, stats &amp; equity</h3>
-          <p class="module-desc">Output layer: turns solver results into clear GTO-style suggestions, statistics, and equity readouts for the current hand and street.</p>
-          <p class="module-solves"><strong>Solves:</strong> Making dense solver output usable for study, review, and permitted real-time overlays.</p>
+        <div class="module-card module-card--stats">
+          <h3>Stats &amp; equity engine</h3>
+          <p class="module-desc">Computes equity, frequencies, and aggregated stats from reconstructed hands and solver outputs.</p>
+          <p class="module-solves"><strong>Solves:</strong> Turns raw hand data into usable insights.</p>
         </div>
         <div class="module-card module-card--offline">
-          <h3>Offline analysis</h3>
-          <p class="module-desc">Processes recorded video, screenshots, or manual inputs to generate hand histories and strategy insights.</p>
-          <p class="module-solves"><strong>Solves:</strong> Post-session study without a live system dependency.</p>
+          <h3>Offline analysis system</h3>
+          <p class="module-desc">Processes videos, screenshots, or manual inputs to generate hand histories and analytical outputs.</p>
+          <p class="module-solves"><strong>Solves:</strong> Enables post-session review without live dependency.</p>
         </div>
       </div>
     </section>
@@ -1754,31 +1714,27 @@
       <div class="use-cases">
         <div class="use-case-card">
           <div class="use-case-icon"><i class="fa-solid fa-code" aria-hidden="true"></i></div>
-          <div>
-            <strong>Poker tool developers</strong>
-            <p><em>Goal:</em> Build analysis or automation systems. <em>Constraint:</em> No reliable data extraction layer.</p>
-          </div>
+          <strong>Poker tool developers</strong>
+          <p class="use-case-meta"><span class="use-case-label">Need</span> Reliable data extraction layer.</p>
+          <p class="use-case-meta"><span class="use-case-label">Constraint</span> No API or inconsistent formats.</p>
         </div>
         <div class="use-case-card">
           <div class="use-case-icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></div>
-          <div>
-            <strong>Strategy / data researchers</strong>
-            <p><em>Goal:</em> Generate structured datasets. <em>Constraint:</em> Manual collection is inefficient.</p>
-          </div>
+          <strong>Data / strategy researchers</strong>
+          <p class="use-case-meta"><span class="use-case-label">Need</span> Large, structured datasets with equity and decisions.</p>
+          <p class="use-case-meta"><span class="use-case-label">Constraint</span> Manual collection is too slow.</p>
         </div>
         <div class="use-case-card">
           <div class="use-case-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
-          <div>
-            <strong>Training software builders</strong>
-            <p><em>Goal:</em> Deliver post-session insights. <em>Constraint:</em> Need accurate hand reconstruction.</p>
-          </div>
+          <strong>Training software builders</strong>
+          <p class="use-case-meta"><span class="use-case-label">Need</span> GTO suggestions and stats.</p>
+          <p class="use-case-meta"><span class="use-case-label">Constraint</span> Require accurate hand histories.</p>
         </div>
         <div class="use-case-card">
           <div class="use-case-icon"><i class="fa-solid fa-chart-pie" aria-hidden="true"></i></div>
-          <div>
-            <strong>Analytics &amp; HUD builders</strong>
-            <p><em>Goal:</em> Show GTO suggestions, stats, and equity alongside live or recorded play. <em>Constraint:</em> Need trustworthy table state from the screen.</p>
-          </div>
+          <strong>Analytics platform builders</strong>
+          <p class="use-case-meta"><span class="use-case-label">Need</span> Clean input data for dashboards.</p>
+          <p class="use-case-meta"><span class="use-case-label">Constraint</span> Lack standardized data sources.</p>
         </div>
       </div>
     </section>
@@ -1791,29 +1747,19 @@
       </div>
     </section>
 
-    <section id="credibility">
-      <div class="section-icon"><i class="fa-solid fa-award" aria-hidden="true"></i></div>
-      <h2>Experience &amp; track record</h2>
-      <ul>
-        <li>Built multiple hand history readers across different platforms</li>
-        <li>Delivered full pipelines: OCR → hand history → solver → GTO suggestions, stats &amp; equity</li>
-        <li>Demonstrated near-complete visual data extraction accuracy in scoped work</li>
-      </ul>
-    </section>
-
     <section id="tech" class="section--muted">
       <div class="section-icon"><i class="fa-solid fa-server" aria-hidden="true"></i></div>
       <h2>Tech stack &amp; architecture</h2>
       <ul>
-        <li>C# (primary development language)</li>
-        <li>OCR + custom computer vision pipelines</li>
-        <li>Modular pipeline: Eye → Reader → Solver → GTO UI</li>
+        <li>C# (core development)</li>
+        <li>Custom OCR and computer vision pipelines</li>
+        <li>Modular flow: Eye → Reader → Solver → Stats/Equity</li>
         <li>Real-time and offline modes</li>
-        <li>Solver access via API, local files, or scraping</li>
-        <li>Optional GPT / AI model integration for decision logic</li>
-        <li>Desktop (Windows)–focused environments</li>
-        <li>Handles asynchronous UI and animation states</li>
-        <li>Outputs: structured logs, databases, solver inputs, and custom formats</li>
+        <li>Solver integration via API, local data, or scraping</li>
+        <li>Optional AI model integration (GPT-style)</li>
+        <li>Windows desktop environments</li>
+        <li>Handles asynchronous UI and animations</li>
+        <li>Outputs: structured logs, databases, analytics-ready data</li>
       </ul>
       <p>Designed for reliability, maintainability, and integration with your downstream stack.</p>
     </section>
@@ -1822,10 +1768,10 @@
       <div class="section-icon"><i class="fa-solid fa-star" aria-hidden="true"></i></div>
       <h2>Why custom vision work</h2>
       <div class="why-visual">
-        <img class="why-pipeline" src="/Poker-OCR-Website/images/pipeline.svg" width="400" height="220" alt="Diagram: Eye to Reader to Solver to GTO suggestions, stats, and equity" loading="lazy">
+        <img class="why-pipeline" src="/Poker-OCR-Website/images/pipeline.svg" width="400" height="220" alt="Diagram: Eye to Reader to Solver to stats and equity" loading="lazy">
         <div class="why-content">
-          <p>Layouts, timings, and table logic differ by client and platform. Custom Eye and Reader logic target your environment—not a generic template—so accuracy and maintainability stay aligned with what you actually run.</p>
-          <p>Engagements stay modular: Poker Eye only, add Reader, wire solver integration (including optional AI-assisted paths), or add GTO suggestions, stats, and equity when the project calls for it.</p>
+          <p>Layouts, timings, and table logic differ by client and platform. Custom Eye and Reader logic target your environment—not a generic template—so accuracy and maintainability match what you actually run.</p>
+          <p>Engagements stay modular: Poker Eye only, add Reader, solver + GTO integration, stats and equity, or offline analysis—scoped to what you need.</p>
         </div>
       </div>
     </section>
@@ -1836,11 +1782,11 @@
       <div class="faq-list">
         <div class="faq-item">
           <h3>Do you need API access?</h3>
-          <p>No. The stack works directly from the screen; APIs are optional when you have them.</p>
+          <p>No. It works directly from the screen.</p>
         </div>
         <div class="faq-item">
-          <h3>Can it handle animations and missing data?</h3>
-          <p>Yes—that is handled in the Reader logic and related processing layers.</p>
+          <h3>Can it handle animations and delays?</h3>
+          <p>Yes. That is handled in the Reader logic.</p>
         </div>
         <div class="faq-item">
           <h3>Real-time or offline?</h3>
@@ -1848,19 +1794,19 @@
         </div>
         <div class="faq-item">
           <h3>Can it integrate with solvers?</h3>
-          <p>Yes—via API, local datasets, or scraping, depending on your setup.</p>
+          <p>Yes—API, local data, or scraping.</p>
         </div>
         <div class="faq-item">
-          <h3>Can AI models be used?</h3>
-          <p>Yes. GPT-style models can be integrated for decision logic when that fits the engagement.</p>
+          <h3>Does it provide equity and stats?</h3>
+          <p>Yes.</p>
         </div>
         <div class="faq-item">
           <h3>Is it modular?</h3>
-          <p>Yes. Each component can run independently or as part of a full pipeline.</p>
+          <p>Yes.</p>
         </div>
         <div class="faq-item">
           <h3>What do you need to start?</h3>
-          <p>Visual samples (screenshots or recordings) and a clear description of expected outputs.</p>
+          <p>Visual samples and expected outputs.</p>
         </div>
       </div>
     </section>
@@ -1868,18 +1814,18 @@
     <section id="contact">
       <div class="section-icon"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i></div>
       <h2>Start a project</h2>
-      <p><strong>Hourly preferred</strong>; milestone structure optional. Typical starting point: table screenshots or videos, platform details, and expected outputs. Deliverables range from modular components to full pipeline systems.</p>
-      <p>If you need extraction, hand-history reconstruction, solver or AI integration, or scoped GTO suggestions, stats, and equity layers, send a focused inquiry.</p>
+      <p><strong>Hourly preferred</strong>; milestone structure optional. Typical inputs: screenshots or videos, platform details, and expected outputs. Deliverables can be individual modules or a full pipeline.</p>
+      <p>If you need extraction, hand-history reconstruction, solver integration, stats and equity, or offline analysis, send a focused inquiry.</p>
 
       <div class="cta-section">
         <div class="section-icon"><i class="fa-solid fa-handshake" aria-hidden="true"></i></div>
         <h2>Contact</h2>
-        <p><strong>Serious inquiries only.</strong> Share:</p>
+        <p><strong>Serious inquiries only.</strong> Please provide:</p>
         <ul>
-          <li>Platform plus screenshots or screen recordings</li>
-          <li>Required outputs (hand histories, actions, data feeds, etc.)</li>
-          <li>Real-time vs offline need</li>
-          <li>Solver, AI, or GTO suggestions / stats / equity requirements</li>
+          <li>Platform and table screenshots or videos</li>
+          <li>Required outputs (hand history, GTO suggestions, equity, stats)</li>
+          <li>Real-time or offline requirement</li>
+          <li>Solver or AI integration needs</li>
         </ul>
         <div class="contact-methods">
           <div class="contact-box">
@@ -1896,22 +1842,37 @@
               <a href="https://www.fiverr.com/hasanaat/do-poker-table-ocr" class="email" target="_blank" rel="noopener noreferrer">Poker table OCR — order on Fiverr</a>
             </div>
           </div>
+          <div class="contact-box">
+            <div class="contact-icon"><i class="fa-brands fa-discord" aria-hidden="true"></i></div>
+            <div class="email-wrap">
+              <p>Discord</p>
+              <p class="contact-id">zain.hasanaat</p>
+            </div>
+          </div>
+          <div class="contact-box">
+            <div class="contact-icon"><i class="fa-brands fa-microsoft" aria-hidden="true"></i></div>
+            <div class="email-wrap">
+              <p>Microsoft Teams</p>
+              <p class="contact-id">zain.hasanaat</p>
+            </div>
+          </div>
         </div>
         <p class="confidential">All projects are handled with strict confidentiality.</p>
       </div>
 
       <h3>Engagement model</h3>
       <ul>
-        <li>Hourly preferred; milestones optional for defined scope</li>
-        <li>Direct communication during development</li>
-        <li>Private, confidential builds</li>
+        <li>Hourly preferred; milestone optional</li>
+        <li>Requirements: screenshots/videos, platform details, expected outputs</li>
+        <li>Deliverables: individual modules or full pipeline</li>
       </ul>
     </section>
 
     <footer>
-      <p class="footer-brand"><i class="fa-solid fa-diamond" aria-hidden="true"></i> Poker OCR → solver pipelines</p>
-      <p>Screen to hand history to solver to GTO suggestions, stats, and equity—custom poker AI and vision work for builders and researchers.</p>
+      <p class="footer-brand"><i class="fa-solid fa-diamond" aria-hidden="true"></i> Poker OCR → GTO insights</p>
+      <p>Screen → hand history → solver → GTO suggestions, equity, and stats—custom poker vision for builders and researchers.</p>
       <p style="margin-top: 0.75rem;">Questions about custom builds: <a href="mailto:azbvision.zain@gmail.com" class="email" style="color: var(--accent);">azbvision.zain@gmail.com</a> · <a href="https://www.fiverr.com/hasanaat/do-poker-table-ocr" class="email" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">Fiverr gig</a></p>
+      <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted);">Discord &amp; Microsoft Teams: <span style="color: var(--accent); font-weight: 600;">zain.hasanaat</span></p>
     </footer>
   </div>
 
