@@ -374,6 +374,8 @@
       width: 260px;
       max-width: 100%;
       align-self: flex-start;
+      /* Line up with thumbnail grid (below “Demos” label + column gap) */
+      margin-top: calc(0.72rem * 1.65 + 0.15rem + 0.35rem);
       display: flex;
       flex-direction: column;
       border-radius: var(--radius);
@@ -487,19 +489,58 @@
       margin-top: 0.15rem;
     }
 
-    @media (max-width: 720px) {
+    /* Stack Fiverr below demo grid when the hero card is narrow (phones, small windows) */
+    @container hero-wrap (max-width: 700px) {
       .hero-preview-row {
-        flex-wrap: wrap;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        gap: 1.25rem;
+      }
+
+      .hero-preview-demos {
+        flex: none;
+        width: 100%;
+        max-width: 100%;
       }
 
       .hero-preview-demos-thumbs {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       }
 
       .hero-fiverr-mini {
-        flex: 1 1 260px;
-        width: auto;
+        flex: none;
+        align-self: stretch;
+        width: 100%;
         max-width: 100%;
+        margin-top: 0;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .hero-preview-row {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        gap: 1.25rem;
+      }
+
+      .hero-preview-demos {
+        flex: none;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .hero-preview-demos-thumbs {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      }
+
+      .hero-fiverr-mini {
+        flex: none;
+        align-self: stretch;
+        width: 100%;
+        max-width: 100%;
+        margin-top: 0;
       }
     }
 
@@ -884,6 +925,8 @@
       margin-bottom: 2rem;
       border: 1px solid var(--border);
       box-shadow: var(--shadow-card);
+      container-type: inline-size;
+      container-name: hero-wrap;
     }
 
     .section-icon {
