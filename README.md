@@ -52,7 +52,7 @@ Then open **http://localhost:5173** in your browser. Vite will open it automatic
 
 **Custom domain (e.g. azbvision.com)** on this project repo: GitHub serves the site from the domain root, so set a repository variable **`VITE_BASE_PATH`** to **`/`** ( **Settings → Secrets and variables → Actions → Variables** ). Otherwise asset URLs keep the `/Poker-OCR-Website/` prefix and can break on the custom domain.
 
-**Canonical / SEO URLs** in `index.html` use `https://azbvision.com/`; update those if your live URL is only `github.io`.
+**Canonical / SEO URLs** in `index.html`, `public/sitemap.xml`, and `public/robots.txt` use **`https://azbvision.github.io/Poker-OCR-Website/`** until custom DNS is live. After pointing **azbvision.com** at GitHub Pages, switch those back to `https://azbvision.com/` (and set **`VITE_BASE_PATH`** to **`/`** per above).
 
 ---
 

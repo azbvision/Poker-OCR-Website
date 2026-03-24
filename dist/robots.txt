@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://azbvision.com/sitemap.xml
+Sitemap: https://azbvision.github.io/Poker-OCR-Website/sitemap.xml
