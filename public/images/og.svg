@@ -12,6 +12,6 @@
     <path d="M80 0v630M160 0v630M240 0v630M320 0v630M400 0v630M480 0v630M560 0v630M640 0v630M720 0v630M800 0v630M880 0v630M960 0v630M1040 0v630M1120 0v630"/>
   </g>
   <text x="80" y="200" fill="#f0f6fc" font-family="Georgia,serif" font-size="52" font-weight="400">Poker OCR to Solver</text>
-  <text x="80" y="280" fill="#8b949e" font-family="system-ui,sans-serif" font-size="26">Screen, hand history, solver, decision</text>
+  <text x="80" y="280" fill="#8b949e" font-family="system-ui,sans-serif" font-size="26">Screen, hand history, solver, GTO stats &amp; equity</text>
   <rect x="80" y="360" width="200" height="8" rx="4" fill="#3fb950"/>
 </svg>
