@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Poker table OCR – real-time recognition",
+    "description": "Live demo of table scanning, stack and pot detection on a desktop client.",
+    "videoUrl": "videos/demo1.mp4"
+  },
+  {
+    "title": "Hand history extraction",
+    "description": "From screen capture to structured hand history output.",
+    "videoUrl": "videos/demo2.mp4"
+  }
+]

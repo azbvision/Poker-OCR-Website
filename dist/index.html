@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Poker OCR &amp; Poker Automation | Poker AI, BOT &amp; Solver Pipelines</title>
+  <meta name="description" content="Custom poker OCR, poker automation, Poker BOT execution, and poker AI / solver integration. Screen to hand history to decisions—built for real environments. https://azbvision.com">
+  <link rel="canonical" href="https://azbvision.com/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#0d1117">
+  <meta property="og:title" content="Poker OCR &amp; Poker Automation | Poker AI, BOT &amp; Solvers">
+  <meta property="og:description" content="Custom poker OCR, poker automation, Poker BOT layers, and poker AI connected to solvers. Hand histories and pipelines for developers and researchers.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://azbvision.com/">
+  <meta property="og:image" content="https://azbvision.com/images/og.svg">
+  <meta property="og:image:alt" content="Poker OCR to solver pipeline">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Poker OCR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Poker OCR &amp; Poker Automation | Poker AI &amp; Solvers">
+  <meta name="twitter:description" content="Custom poker OCR, automation, Poker BOT, and poker AI / solver pipelines for permitted analysis and tooling.">
+  <meta name="twitter:image" content="https://azbvision.com/images/og.svg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://azbvision.com/#website",
+        "url": "https://azbvision.com/",
+        "name": "Poker OCR — Custom pipelines",
+        "description": "Custom poker OCR, poker automation, Poker BOT execution, and poker AI / solver integration for developers and researchers.",
+        "publisher": { "@id": "https://azbvision.com/#organization" },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://azbvision.com/#organization",
+        "name": "Custom Poker OCR development",
+        "url": "https://azbvision.com/",
+        "email": "azbvision.zain@gmail.com",
+        "description": "Custom software for poker OCR, computer vision, hand history reconstruction, poker automation, Poker BOT execution layers, and poker AI / GTO solver integration in permitted environments.",
+        "areaServed": { "@type": "Place", "name": "Worldwide" },
+        "serviceType": [
+          "Poker OCR development",
+          "Poker automation",
+          "Computer vision consulting",
+          "Poker AI and solver integration"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://azbvision.com/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do you need API access?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The stack works directly from the screen; APIs are optional when you have them."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can it handle animations and missing data?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes—that is handled in the Reader logic and related processing layers."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Real-time or offline?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Both are supported."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can it integrate with solvers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes—via API, local datasets, or scraping, depending on your setup."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can AI models be used?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. GPT-style models can be integrated for decision logic when that fits the engagement."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is it modular?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Each component can run independently or as part of a full pipeline."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What do you need to start?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Visual samples (screenshots or recordings) and a clear description of expected outputs."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+  <style>
+    :root {
+      --bg-deep: #0d1117;
+      --bg-card: #161b22;
+      --bg-elevated: #21262d;
+      --border: #30363d;
+      --text-primary: #f0f6fc;
+      --text-secondary: #8b949e;
+      --text-muted: #6e7681;
+      --accent: #3fb950;
+      --accent-dim: #238636;
+      --accent-gold: #d4a853;
+      --stage-strategy: #a371f7;
+      --stage-action: #58a6ff;
+      --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.35);
+      --radius: 8px;
+      --radius-lg: 12px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg-deep);
+      background-image:
+        radial-gradient(ellipse 120% 80% at 50% -20%, rgba(63, 185, 80, 0.08), transparent 50%),
+        radial-gradient(ellipse 80% 50% at 100% 50%, rgba(88, 166, 255, 0.04), transparent 45%);
+      color: var(--text-primary);
+      line-height: 1.65;
+      font-weight: 400;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    summary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Hero */
+    header {
+      padding: 4rem 0 3.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-tag {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.85rem, 4vw, 2.5rem);
+      font-weight: 400;
+      line-height: 1.25;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 640px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 620px;
+    }
+
+    .hero-cta {
+      margin-top: 1.25rem;
+      margin-bottom: 0;
+    }
+
+    .hero-cta a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .hero-cta a:hover {
+      text-decoration: underline;
+    }
+
+    .overview-jump {
+      font-size: 0.88rem;
+      margin-top: -0.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .overview-jump a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .overview-jump a:hover {
+      text-decoration: underline;
+    }
+
+    /* Sections */
+    section {
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--border);
+      border-top: 1px solid transparent;
+    }
+
+    section.section--muted {
+      background: rgba(22, 27, 34, 0.55);
+      border-top-color: rgba(48, 54, 61, 0.5);
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      padding-left: calc(50vw - 50%);
+      padding-right: calc(50vw - 50%);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .section-head .section-icon {
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+
+    .section-head h2 {
+      margin-bottom: 0;
+      padding-top: 0.35rem;
+    }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.5rem, 3vw, 1.85rem);
+      font-weight: 400;
+      margin-bottom: 1.25rem;
+      color: var(--text-primary);
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    h3:first-of-type {
+      margin-top: 0;
+    }
+
+    p {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    ul {
+      list-style: none;
+      margin: 1rem 0;
+    }
+
+    ul li {
+      position: relative;
+      padding-left: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 5px;
+      height: 5px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    /* Use case grid */
+    .use-cases {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .use-case-card {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-card);
+    }
+
+    .use-case-card strong {
+      color: var(--text-primary);
+      font-size: 0.9rem;
+    }
+
+    .use-case-card p {
+      margin: 0.35rem 0 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Tech stack */
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .tech-tag {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+
+    /* CTA + Contact */
+    .cta-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-top: 1rem;
+      box-shadow: var(--shadow-card);
+    }
+
+    .cta-section h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-list {
+      margin: 1rem 0;
+    }
+
+    .cta-list li::before {
+      background: var(--accent-gold);
+    }
+
+    .contact-box {
+      background: var(--bg-deep);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .contact-box p {
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-box .email {
+      font-weight: 600;
+      color: var(--accent);
+      word-break: break-all;
+      text-decoration: none;
+    }
+
+    .contact-box .email:hover {
+      text-decoration: underline;
+    }
+
+    /* Nav */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(13, 17, 23, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 0;
+    }
+
+    .site-nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+    }
+
+    .nav-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 0.5rem 0.85rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .nav-menu {
+      display: contents;
+    }
+
+    @media (max-width: 960px) {
+      .nav-toggle {
+        display: flex;
+      }
+
+      .nav-menu {
+        display: none;
+        flex-basis: 100%;
+        width: 100%;
+        padding-top: 0.85rem;
+        margin-top: 0.35rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .site-nav.nav-open .nav-menu {
+        display: block;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 0.35rem !important;
+      }
+
+      .nav-links a {
+        padding: 0.55rem 0;
+        border-radius: var(--radius);
+      }
+
+      .nav-links a:hover {
+        background: var(--bg-elevated);
+        text-decoration: none;
+      }
+    }
+
+    .nav-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-brand i {
+      color: var(--accent);
+    }
+
+    .nav-cta {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .nav-cta:hover,
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .nav-links .nav-cta {
+      color: var(--accent);
+    }
+
+    /* Hero with image */
+    .hero-wrap {
+      position: relative;
+      z-index: 1;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-card);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-color: #0d1117;
+      background-image:
+        linear-gradient(135deg, rgba(13, 17, 23, 0.92) 0%, rgba(22, 27, 34, 0.88) 45%, rgba(13, 17, 23, 0.95) 100%),
+        linear-gradient(rgba(48, 54, 61, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(48, 54, 61, 0.2) 1px, transparent 1px);
+      background-size: 100% 100%, 28px 28px, 28px 28px;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 55% at 70% 20%, rgba(63, 185, 80, 0.12), transparent 55%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 2.5rem 1.5rem;
+    }
+
+    .section-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      font-size: 1.25rem;
+    }
+
+    .use-case-icon {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      border-radius: var(--radius);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    .contact-box {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .contact-box .email-wrap {
+      flex: 1;
+    }
+
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      border-radius: var(--radius);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1.25rem;
+    }
+
+    .confidential {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+      font-style: italic;
+    }
+
+    .why-visual {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      align-items: center;
+    }
+
+    .why-visual .why-pipeline {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-card);
+      background: var(--bg-card);
+    }
+
+    .why-content p {
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .why-visual {
+        grid-template-columns: 320px 1fr;
+      }
+
+      .why-visual .why-pipeline {
+        max-height: none;
+      }
+    }
+
+    /* Demo videos */
+    .demos-section .section-icon {
+      margin-bottom: 1rem;
+    }
+
+    .demos-intro {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      max-width: 640px;
+    }
+
+    .demos-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .demo-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    .demo-video-wrap {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: var(--bg-deep);
+    }
+
+    .demo-video-wrap video,
+    .demo-video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .demo-poster {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--bg-deep);
+      background-size: cover;
+      background-position: center;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .demo-poster::after {
+      content: '';
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.55);
+      border: 2px solid var(--accent);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233fb950'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: 58% 50%;
+      background-size: 28px 28px;
+    }
+
+    .demo-poster:hover::after {
+      border-color: var(--text-primary);
+    }
+
+    .demo-poster span {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    .demo-video-wrap.is-playing .demo-poster {
+      display: none;
+    }
+
+    .demo-meta {
+      padding: 1.25rem;
+    }
+
+    .demo-meta h3 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+      color: var(--text-primary);
+    }
+
+    .demo-meta p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .demos-placeholder {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      background: var(--bg-card);
+    }
+
+    .demos-loading {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    @media (min-width: 640px) {
+      .demos-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-brand {
+      color: var(--text-secondary);
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+    }
+
+    .footer-brand i {
+      color: var(--accent);
+      margin-right: 0.35rem;
+    }
+
+    @media (min-width: 768px) {
+      header {
+        padding: 5rem 0 4rem;
+      }
+
+      .hero-content {
+        padding: 3.5rem 2.5rem;
+      }
+
+      section {
+        padding: 3.5rem 0;
+      }
+    }
+
+    /* PokerOCR-inspired: disclaimer, steps, overview, requirements, two-pillar */
+    .disclaimer-bar {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.85rem 1.15rem;
+      margin-bottom: 2rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .disclaimer-bar strong {
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .hero-kicker {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--accent-gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 900px) {
+      .steps-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      position: relative;
+      padding-top: 2.5rem;
+      box-shadow: var(--shadow-card);
+    }
+
+    .step-num {
+      position: absolute;
+      top: 1rem;
+      left: 1.25rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .step-card h3 {
+      margin-top: 0;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .step-card p {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    ol.req-list {
+      list-style: none;
+      counter-reset: req;
+      margin: 1rem 0;
+    }
+
+    ol.req-list li {
+      counter-increment: req;
+      position: relative;
+      padding-left: 2.5rem;
+      margin-bottom: 0.85rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    ol.req-list li::before {
+      content: counter(req);
+      position: absolute;
+      left: 0;
+      top: 0.15rem;
+      width: 1.65rem;
+      height: 1.65rem;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .pillar-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    #solution .pillar-grid {
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 700px) {
+      #solution .pillar-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .pillar-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-card);
+      border-left-width: 3px;
+      border-left-color: var(--border);
+    }
+
+    .pillar-card--eye {
+      border-left-color: var(--accent);
+    }
+
+    .pillar-card--reader {
+      border-left-color: var(--accent-gold);
+    }
+
+    .pillar-card--strategy {
+      border-left-color: var(--stage-strategy);
+    }
+
+    .pillar-card--action {
+      border-left-color: var(--stage-action);
+    }
+
+    .pillar-card h3 {
+      margin-top: 0;
+      color: var(--text-primary);
+      font-size: 1.05rem;
+    }
+
+    .pillar-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .nav-links {
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      row-gap: 0.5rem;
+    }
+
+    .process-list {
+      list-style: none;
+      margin: 1.25rem 0 0;
+      counter-reset: proc;
+    }
+
+    .process-list li {
+      counter-increment: proc;
+      position: relative;
+      padding-left: 2.75rem;
+      margin-bottom: 1rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .process-list li::before {
+      content: counter(proc);
+      position: absolute;
+      left: 0;
+      top: 0.1rem;
+      width: 1.85rem;
+      height: 1.85rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .module-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .module-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 900px) {
+      .module-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .module-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.35rem;
+      box-shadow: var(--shadow-card);
+      border-left-width: 3px;
+      border-left-color: var(--border);
+    }
+
+    .module-card--eye {
+      border-left-color: var(--accent);
+    }
+
+    .module-card--reader {
+      border-left-color: var(--accent-gold);
+    }
+
+    .module-card--strategy {
+      border-left-color: var(--stage-strategy);
+    }
+
+    .module-card--action {
+      border-left-color: var(--stage-action);
+    }
+
+    .module-card--offline {
+      border-left-color: var(--text-muted);
+    }
+
+    .module-card h3 {
+      margin-top: 0;
+      color: var(--text-primary);
+      font-size: 1rem;
+    }
+
+    .module-card .module-desc {
+      margin-bottom: 0.75rem;
+      font-size: 0.92rem;
+    }
+
+    .module-card .module-solves {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .module-card .module-solves strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.65rem 1.5rem;
+      margin-top: 1.25rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    @media (min-width: 640px) {
+      .glossary-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .glossary-grid dt {
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+    }
+
+    .glossary-grid dt:first-child {
+      margin-top: 0;
+    }
+
+    .glossary-grid dd {
+      margin: 0.15rem 0 0;
+      padding-left: 0;
+    }
+
+    .glossary-details {
+      margin-top: 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--bg-card);
+      overflow: hidden;
+    }
+
+    .glossary-details summary {
+      padding: 1rem 1.15rem;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-primary);
+      list-style: none;
+    }
+
+    .glossary-details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .glossary-details summary::after {
+      content: '+';
+      float: right;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .glossary-details[open] summary::after {
+      content: '−';
+    }
+
+    .glossary-details .glossary-grid {
+      padding: 0 1.15rem 1.15rem;
+      margin-top: 0;
+    }
+
+    .faq-list {
+      margin-top: 1.25rem;
+    }
+
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.15rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .faq-item h3 {
+      margin: 0 0 0.4rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .faq-item p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="container">
+      <a href="/" class="nav-brand"><i class="fa-solid fa-diamond" aria-hidden="true"></i> Poker OCR</a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
+        <span class="visually-hidden">Menu</span>
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+      <div class="nav-menu" id="nav-menu">
+        <span class="nav-links">
+          <a href="#overview"><i class="fa-solid fa-book-open" aria-hidden="true"></i> Overview</a>
+          <a href="#demos"><i class="fa-solid fa-play-circle" aria-hidden="true"></i> Demos</a>
+          <a href="#process"><i class="fa-solid fa-route" aria-hidden="true"></i> Process</a>
+          <a href="#modules"><i class="fa-solid fa-cubes" aria-hidden="true"></i> Modules</a>
+          <a href="#clients"><i class="fa-solid fa-user-group" aria-hidden="true"></i> Clients</a>
+          <a href="#tech"><i class="fa-solid fa-server" aria-hidden="true"></i> Tech</a>
+          <a href="#faq"><i class="fa-regular fa-circle-question" aria-hidden="true"></i> FAQ</a>
+          <a href="#contact" class="nav-cta"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact</a>
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <header>
+      <div class="hero-wrap">
+        <div class="hero-bg" role="presentation"></div>
+        <div class="hero-content">
+          <p class="hero-kicker">Built for real environments, not ideal conditions.</p>
+          <p class="hero-tag">Custom Poker Vision &amp; Automation</p>
+          <h1>Poker OCR to Solver Pipeline</h1>
+          <p class="hero-sub">Extract table data, reconstruct hand histories, and connect to solver logic in a single pipeline.</p>
+          <p class="hero-desc">I build custom poker computer vision systems that extract, reconstruct, and act on real game data—focused on end-to-end pipelines: screen → hand history → solver → decision/automation.</p>
+          <p class="hero-cta"><a href="#demos">See demos <span aria-hidden="true">→</span></a></p>
+        </div>
+      </div>
+    </header>
+
+    <p class="disclaimer-bar"><strong>This site does not promote gambling.</strong> Systems can be built for analysis, research, or automation where permitted. Offline analysis tools are intended for study and review. There is no guarantee of compliance with third-party platform terms—clients are responsible for platform compliance and lawful use. Custom software engineering for vision, data extraction, and automation in private or licensed environments.</p>
+
+    <section id="overview">
+      <div class="section-icon"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></div>
+      <h2>Overview</h2>
+      <p>I build custom <strong>poker OCR</strong> and <strong>poker automation</strong> systems that turn table visuals into structured, actionable data—plus optional <strong>Poker BOT</strong> execution and <strong>poker AI</strong> / solver-connected decision paths for permitted tooling. The pipeline starts with <strong>Poker Eye</strong>, which extracts cards, stacks, bets, and UI states directly from the screen using OCR and image processing. <strong>Poker Reader</strong> then converts this raw data into complete hand histories by tracking sequences, applying game logic, and handling missing or delayed information.</p>
+      <p>From there, the system connects to solver logic through APIs, local datasets, live scraping, or AI models to generate strategy outputs. When needed, a <strong>Poker BOT</strong> layer executes decisions by interacting with the interface in real time.</p>
+      <p>Each component can run independently or as a full pipeline, supporting both live and offline use cases—built for real environments, handling complex layouts, animations, and inconsistencies without relying on direct platform access.</p>
+      <p class="overview-jump"><a href="#outcomes">Primary outcomes</a> · <a href="#glossary">Glossary</a></p>
+    </section>
+
+    <section id="outcomes" class="section--muted">
+      <div class="section-icon"><i class="fa-solid fa-bullseye" aria-hidden="true"></i></div>
+      <h2>Primary outcomes</h2>
+      <p>What engagements are optimized to deliver—pick the subset that matches your product.</p>
+      <ul>
+        <li>High-accuracy extraction of cards, stacks, bets, and positions from screen</li>
+        <li>Structured, time-sequenced hand histories from raw visuals</li>
+        <li>Real-time or offline processing pipelines</li>
+        <li>Direct mapping of game states to solver decisions</li>
+        <li>Reduced manual tagging and data entry</li>
+        <li>Scalable data collection for analysis or training</li>
+        <li>Modular components usable independently or integrated</li>
+        <li>Works without APIs (screen-based) or with APIs when available</li>
+        <li>Handles animations, partial states, and edge cases</li>
+      </ul>
+    </section>
+
+    <section id="glossary">
+      <div class="section-icon"><i class="fa-solid fa-book" aria-hidden="true"></i></div>
+      <h2>Glossary</h2>
+      <p>Short definitions for terms used on this page.</p>
+      <details class="glossary-details">
+        <summary>Terms at a glance</summary>
+        <dl class="glossary-grid">
+          <dt>OCR</dt>
+          <dd>Extracting text and numbers from the screen.</dd>
+          <dt>Computer vision</dt>
+          <dd>Detecting visual elements such as cards and UI components.</dd>
+          <dt>Hand history</dt>
+          <dd>Structured sequence of actions in a poker hand.</dd>
+          <dt>Poker Eye</dt>
+          <dd>Visual extraction layer (OCR + image processing).</dd>
+          <dt>Poker Reader</dt>
+          <dd>Logic and sequencing engine for hand histories.</dd>
+          <dt>Solver integration</dt>
+          <dd>Mapping game states to strategy outputs (API, files, scraping, or models).</dd>
+          <dt>Poker BOT</dt>
+          <dd>UI interaction and execution layer for decisions.</dd>
+        </dl>
+      </details>
+    </section>
+
+    <section id="process" class="section--muted">
+      <div class="section-icon"><i class="fa-solid fa-route" aria-hidden="true"></i></div>
+      <h2>Process &amp; timeline</h2>
+      <p>From requirements through delivery—aligned to how modular pipelines are actually built.</p>
+      <ol class="process-list">
+        <li>Requirements + sample review</li>
+        <li>Poker Eye development (data extraction)</li>
+        <li>Poker Reader development (logic + sequencing)</li>
+        <li>Solver integration (API / scraping / AI model)</li>
+        <li>Optional BOT execution layer</li>
+        <li>Testing on real scenarios</li>
+        <li>Iteration + delivery</li>
+      </ol>
+    </section>
+
+    <section id="solution">
+      <div class="section-icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></div>
+      <h2>Modular pipeline</h2>
+      <p>End-to-end flow is <strong>Eye → Reader → Solver → Action</strong>. You can engage for one module or the full chain. For concrete deliverables and scopes, see <a href="#modules">Modules &amp; services</a> below.</p>
+      <div class="pillar-grid">
+        <div class="pillar-card pillar-card--eye">
+          <h3>Poker Eye</h3>
+          <p>Detects and extracts relevant visual elements—cards, stacks, bets, positions, UI states—using OCR and image processing, without requiring platform APIs or internal access.</p>
+        </div>
+        <div class="pillar-card pillar-card--reader">
+          <h3>Poker Reader</h3>
+          <p>Converts raw extractions into structured, chronological hand histories with game logic, sequence tracking, and inference for missing or asynchronous signals.</p>
+        </div>
+        <div class="pillar-card pillar-card--strategy">
+          <h3>Solver integration</h3>
+          <p>Connects hand states to strategy via API, local datasets, live parallel scraping, or model-based decision paths—translating real situations into actionable outputs.</p>
+        </div>
+        <div class="pillar-card pillar-card--action">
+          <h3>Poker BOT (optional)</h3>
+          <p>Executes decisions through the UI with timing, animations, and input simulation when in scope—bridging strategy output to real-time play.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="modules" class="section--muted">
+      <div class="section-icon"><i class="fa-solid fa-cubes" aria-hidden="true"></i></div>
+      <h2>Modules &amp; services</h2>
+      <p>Each block solves a specific gap; combine them for a full pipeline.</p>
+      <div class="module-grid">
+        <div class="module-card module-card--eye">
+          <h3>Poker Eye</h3>
+          <p class="module-desc">Computer vision / OCR: detects and extracts all relevant visual elements from the table—cards, stacks, bets, positions, UI states.</p>
+          <p class="module-solves"><strong>Solves:</strong> A reliable data layer without requiring APIs or internal access.</p>
+        </div>
+        <div class="module-card module-card--reader">
+          <h3>Poker Reader</h3>
+          <p class="module-desc">Hand history engine: converts raw extractions into structured, chronological histories with game logic, sequence tracking, and inference.</p>
+          <p class="module-solves"><strong>Solves:</strong> Full game flow from incomplete or asynchronous visual signals.</p>
+        </div>
+        <div class="module-card module-card--strategy">
+          <h3>Solver integration</h3>
+          <p class="module-desc">Connects reconstructed states to solver strategies via API, local datasets, live parallel scraping, or GPT-style decision models.</p>
+          <p class="module-solves"><strong>Solves:</strong> Turning real game situations into actionable strategy outputs.</p>
+        </div>
+        <div class="module-card module-card--action">
+          <h3>Poker BOT</h3>
+          <p class="module-desc">Execution layer: carries out decisions by interacting with the UI—timing, animations, and input simulation.</p>
+          <p class="module-solves"><strong>Solves:</strong> Bridging decision output with real-time action in dynamic interfaces.</p>
+        </div>
+        <div class="module-card module-card--offline">
+          <h3>Offline analysis</h3>
+          <p class="module-desc">Processes recorded video, screenshots, or manual inputs to generate hand histories and strategy insights.</p>
+          <p class="module-solves"><strong>Solves:</strong> Post-session study without a live system dependency.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="clients">
+      <div class="section-icon"><i class="fa-solid fa-user-group" aria-hidden="true"></i></div>
+      <h2>Who this is for</h2>
+      <div class="use-cases">
+        <div class="use-case-card">
+          <div class="use-case-icon"><i class="fa-solid fa-code" aria-hidden="true"></i></div>
+          <div>
+            <strong>Poker tool developers</strong>
+            <p><em>Goal:</em> Build analysis or automation systems. <em>Constraint:</em> No reliable data extraction layer.</p>
+          </div>
+        </div>
+        <div class="use-case-card">
+          <div class="use-case-icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></div>
+          <div>
+            <strong>Strategy / data researchers</strong>
+            <p><em>Goal:</em> Generate structured datasets. <em>Constraint:</em> Manual collection is inefficient.</p>
+          </div>
+        </div>
+        <div class="use-case-card">
+          <div class="use-case-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+          <div>
+            <strong>Training software builders</strong>
+            <p><em>Goal:</em> Deliver post-session insights. <em>Constraint:</em> Need accurate hand reconstruction.</p>
+          </div>
+        </div>
+        <div class="use-case-card">
+          <div class="use-case-icon"><i class="fa-solid fa-robot" aria-hidden="true"></i></div>
+          <div>
+            <strong>Automation engineers</strong>
+            <p><em>Goal:</em> Integrate decision systems with the UI. <em>Constraint:</em> Complex visual environments.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="demos" class="demos-section section--muted">
+      <div class="section-icon"><i class="fa-solid fa-play-circle" aria-hidden="true"></i></div>
+      <h2>Demo videos &amp; prior work</h2>
+      <p class="demos-intro">Short demos of poker OCR and automation. To add or change videos, edit <code>demos.json</code> in this project—see VIDEO-GUIDE.md. Optional <code>thumbnailUrl</code> shows a poster before embedded players load.</p>
+      <div id="demos-container" class="demos-grid">
+        <span class="demos-loading">Loading demos…</span>
+      </div>
+    </section>
+
+    <section id="credibility">
+      <div class="section-icon"><i class="fa-solid fa-award" aria-hidden="true"></i></div>
+      <h2>Experience &amp; track record</h2>
+      <ul>
+        <li>Built multiple hand history readers across different platforms</li>
+        <li>Delivered full pipelines: OCR → hand history → solver → execution</li>
+        <li>Demonstrated near-complete visual data extraction accuracy in scoped work</li>
+      </ul>
+    </section>
+
+    <section id="tech" class="section--muted">
+      <div class="section-icon"><i class="fa-solid fa-server" aria-hidden="true"></i></div>
+      <h2>Tech stack &amp; architecture</h2>
+      <ul>
+        <li>C# (primary development language)</li>
+        <li>OCR + custom computer vision pipelines</li>
+        <li>Modular pipeline: Eye → Reader → Solver → Action</li>
+        <li>Real-time and offline modes</li>
+        <li>Solver access via API, local files, or scraping</li>
+        <li>Optional GPT / AI model integration for decision logic</li>
+        <li>Desktop (Windows)–focused environments</li>
+        <li>Handles asynchronous UI and animation states</li>
+        <li>Outputs: structured logs, databases, solver inputs, and custom formats</li>
+      </ul>
+      <p>Designed for reliability, maintainability, and integration with your downstream stack.</p>
+    </section>
+
+    <section id="why">
+      <div class="section-icon"><i class="fa-solid fa-star" aria-hidden="true"></i></div>
+      <h2>Why custom vision work</h2>
+      <div class="why-visual">
+        <img class="why-pipeline" src="/images/pipeline.svg" width="400" height="220" alt="Diagram: Eye to Reader to Solver to Poker BOT execution layer" loading="lazy">
+        <div class="why-content">
+          <p>Layouts, timings, and table logic differ by client and platform. Custom Eye and Reader logic target your environment—not a generic template—so accuracy and maintainability stay aligned with what you actually run.</p>
+          <p>Engagements stay modular: Poker Eye only, add Reader, wire solver integration (including optional AI-assisted paths), or include the BOT layer when the project calls for it.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section--muted">
+      <div class="section-icon"><i class="fa-regular fa-circle-question" aria-hidden="true"></i></div>
+      <h2>Frequently asked questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h3>Do you need API access?</h3>
+          <p>No. The stack works directly from the screen; APIs are optional when you have them.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can it handle animations and missing data?</h3>
+          <p>Yes—that is handled in the Reader logic and related processing layers.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Real-time or offline?</h3>
+          <p>Both are supported.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can it integrate with solvers?</h3>
+          <p>Yes—via API, local datasets, or scraping, depending on your setup.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can AI models be used?</h3>
+          <p>Yes. GPT-style models can be integrated for decision logic when that fits the engagement.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is it modular?</h3>
+          <p>Yes. Each component can run independently or as part of a full pipeline.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What do you need to start?</h3>
+          <p>Visual samples (screenshots or recordings) and a clear description of expected outputs.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-icon"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i></div>
+      <h2>Start a project</h2>
+      <p><strong>Hourly preferred</strong>; milestone structure optional. Typical starting point: table screenshots or videos, platform details, and expected outputs. Deliverables range from modular components to full pipeline systems.</p>
+      <p>If you need extraction, hand-history reconstruction, solver or AI integration, or scoped execution layers, send a focused inquiry.</p>
+
+      <div class="cta-section">
+        <div class="section-icon"><i class="fa-solid fa-handshake" aria-hidden="true"></i></div>
+        <h2>Contact</h2>
+        <p><strong>Serious inquiries only.</strong> Share:</p>
+        <ul>
+          <li>Platform plus screenshots or screen recordings</li>
+          <li>Required outputs (hand histories, actions, data feeds, etc.)</li>
+          <li>Real-time vs offline need</li>
+          <li>Solver or AI integration requirements</li>
+        </ul>
+        <div class="contact-box">
+          <div class="contact-icon"><i class="fa-solid fa-envelope" aria-hidden="true"></i></div>
+          <div class="email-wrap">
+            <p>Email</p>
+            <a href="mailto:azbvision.zain@gmail.com" class="email">azbvision.zain@gmail.com</a>
+          </div>
+        </div>
+        <p class="confidential">All projects are handled with strict confidentiality.</p>
+      </div>
+
+      <h3>Engagement model</h3>
+      <ul>
+        <li>Hourly preferred; milestones optional for defined scope</li>
+        <li>Direct communication during development</li>
+        <li>Private, confidential builds</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p class="footer-brand"><i class="fa-solid fa-diamond" aria-hidden="true"></i> Poker OCR → solver pipelines</p>
+      <p>Screen to hand history to solver to decision—custom poker AI, BOT, and vision work for builders and researchers.</p>
+      <p style="margin-top: 0.75rem;">Questions about custom builds: <a href="mailto:azbvision.zain@gmail.com" class="email" style="color: var(--accent);">azbvision.zain@gmail.com</a></p>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      var toggle = document.getElementById('nav-toggle');
+      if (toggle && nav) {
+        toggle.addEventListener('click', function () {
+          var open = !nav.classList.contains('nav-open');
+          nav.classList.toggle('nav-open', open);
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        nav.querySelectorAll('#nav-menu a[href^="#"]').forEach(function (a) {
+          a.addEventListener('click', function () {
+            nav.classList.remove('nav-open');
+            toggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      var container = document.getElementById('demos-container');
+      if (!container) return;
+
+      function isEmbedUrl(url) {
+        return typeof url === 'string' && (url.indexOf('youtube.com') !== -1 || url.indexOf('youtu.be') !== -1 || url.indexOf('vimeo.com') !== -1);
+      }
+
+      function embedUrl(url) {
+        if (url.indexOf('youtu.be/') !== -1) {
+          var id = url.split('youtu.be/')[1].split('?')[0];
+          return 'https://www.youtube.com/embed/' + id;
+        }
+        if (url.indexOf('youtube.com/watch') !== -1) {
+          var m = url.match(/[?&]v=([^&]+)/);
+          return m ? 'https://www.youtube.com/embed/' + m[1] : url;
+        }
+        if (url.indexOf('vimeo.com') !== -1) {
+          var vid = url.split('vimeo.com/')[1].split('?')[0].split('/')[0];
+          return 'https://player.vimeo.com/video/' + vid;
+        }
+        return url;
+      }
+
+      function renderDemo(demo) {
+        var card = document.createElement('div');
+        card.className = 'demo-card';
+        var videoUrl = (demo.videoUrl || '').trim();
+        var thumb = (demo.thumbnailUrl || '').trim();
+        var title = (demo.title || 'Demo').replace(/</g, '&lt;');
+        var desc = (demo.description || '').replace(/</g, '&lt;');
+        var wrap = document.createElement('div');
+        wrap.className = 'demo-video-wrap';
+
+        if (isEmbedUrl(videoUrl) && thumb) {
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'demo-poster';
+          btn.style.backgroundImage = 'url(' + JSON.stringify(thumb) + ')';
+          btn.setAttribute('aria-label', 'Play video: ' + (demo.title || 'Demo'));
+          var sr = document.createElement('span');
+          sr.textContent = 'Play video';
+          sr.className = 'visually-hidden';
+          btn.appendChild(sr);
+          var iframe = document.createElement('iframe');
+          iframe.setAttribute('title', demo.title || 'Demo');
+          iframe.setAttribute('frameborder', '0');
+          iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+          iframe.setAttribute('allowfullscreen', '');
+          iframe.style.opacity = '0';
+          iframe.style.pointerEvents = 'none';
+          btn.addEventListener('click', function () {
+            iframe.src = embedUrl(videoUrl);
+            wrap.classList.add('is-playing');
+            iframe.style.opacity = '1';
+            iframe.style.pointerEvents = '';
+          });
+          wrap.appendChild(btn);
+          wrap.appendChild(iframe);
+        } else if (isEmbedUrl(videoUrl)) {
+          var ifr = document.createElement('iframe');
+          ifr.src = embedUrl(videoUrl);
+          ifr.setAttribute('title', demo.title || 'Demo');
+          ifr.setAttribute('frameborder', '0');
+          ifr.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+          ifr.setAttribute('allowfullscreen', '');
+          wrap.appendChild(ifr);
+        } else if (videoUrl) {
+          var vid = document.createElement('video');
+          vid.setAttribute('controls', '');
+          vid.setAttribute('preload', 'metadata');
+          if (thumb) vid.setAttribute('poster', thumb);
+          var src = document.createElement('source');
+          src.src = videoUrl;
+          src.type = 'video/mp4';
+          vid.appendChild(src);
+          vid.appendChild(document.createTextNode('Your browser does not support the video tag.'));
+          wrap.appendChild(vid);
+        } else {
+          wrap.innerHTML = '<div class="demos-placeholder"><i class="fa-solid fa-video fa-2x" aria-hidden="true" style="margin-bottom:0.5rem; opacity:0.5;"></i><br>No video URL</div>';
+        }
+
+        card.appendChild(wrap);
+        var meta = document.createElement('div');
+        meta.className = 'demo-meta';
+        meta.innerHTML = '<h3>' + title + '</h3><p>' + desc + '</p>';
+        card.appendChild(meta);
+        return card;
+      }
+
+      fetch('/demos.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .catch(function () { return []; })
+        .then(function (list) {
+          container.innerHTML = '';
+          if (!Array.isArray(list) || list.length === 0) {
+            container.innerHTML = '<div class="demos-placeholder">No demos yet. Add entries to <strong>demos.json</strong> (see VIDEO-GUIDE.md).</div>';
+            return;
+          }
+          list.forEach(function (demo) {
+            container.appendChild(renderDemo(demo));
+          });
+        });
+    })();
+  </script>
+</body>
+</html>

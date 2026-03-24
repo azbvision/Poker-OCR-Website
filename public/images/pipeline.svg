@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#161b22"/>
+      <stop offset="100%" style="stop-color:#21262d"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="220" rx="12" fill="url(#g)" stroke="#30363d" stroke-width="1"/>
+  <text x="200" y="28" text-anchor="middle" fill="#8b949e" font-family="system-ui,sans-serif" font-size="11" font-weight="600" letter-spacing="0.08em">DATA PIPELINE</text>
+  <g stroke="#30363d" stroke-width="1.5" stroke-linecap="round">
+    <path d="M88 110h44"/>
+    <path d="M188 110h44"/>
+    <path d="M288 110h40"/>
+  </g>
+  <g font-family="system-ui,sans-serif" font-size="10" fill="#6e7681">
+    <rect x="24" y="72" width="64" height="76" rx="8" stroke="#3fb950" stroke-width="2" fill="#0d1117"/>
+    <text x="56" y="104" text-anchor="middle" fill="#3fb950" font-weight="700" font-size="11">Eye</text>
+    <text x="56" y="122" text-anchor="middle">pixels</text>
+    <rect x="132" y="72" width="64" height="76" rx="8" stroke="#d4a853" stroke-width="2" fill="#0d1117"/>
+    <text x="164" y="104" text-anchor="middle" fill="#d4a853" font-weight="700" font-size="11">Reader</text>
+    <text x="164" y="122" text-anchor="middle">hand HH</text>
+    <rect x="240" y="72" width="64" height="76" rx="8" stroke="#a371f7" stroke-width="2" fill="#0d1117"/>
+    <text x="272" y="104" text-anchor="middle" fill="#a371f7" font-weight="700" font-size="11">Solver</text>
+    <text x="272" y="122" text-anchor="middle">nodes</text>
+    <rect x="336" y="72" width="60" height="76" rx="8" stroke="#58a6ff" stroke-width="2" fill="#0d1117"/>
+    <text x="366" y="104" text-anchor="middle" fill="#58a6ff" font-weight="700" font-size="11">BOT</text>
+    <text x="366" y="122" text-anchor="middle">exec</text>
+  </g>
+</svg>
