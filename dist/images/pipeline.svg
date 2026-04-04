@@ -20,8 +20,8 @@
     <text x="164" y="104" text-anchor="middle" fill="#d4a853" font-weight="700" font-size="11">Reader</text>
     <text x="164" y="122" text-anchor="middle">hand HH</text>
     <rect x="240" y="72" width="64" height="76" rx="8" stroke="#a371f7" stroke-width="2" fill="#0d1117"/>
-    <text x="272" y="104" text-anchor="middle" fill="#a371f7" font-weight="700" font-size="11">Solver</text>
-    <text x="272" y="122" text-anchor="middle">GTO</text>
+    <text x="272" y="104" text-anchor="middle" fill="#a371f7" font-weight="700" font-size="11">State</text>
+    <text x="272" y="122" text-anchor="middle">players</text>
     <rect x="336" y="72" width="60" height="76" rx="8" stroke="#58a6ff" stroke-width="2" fill="#0d1117"/>
     <text x="366" y="100" text-anchor="middle" fill="#58a6ff" font-weight="700" font-size="10">Stats</text>
     <text x="366" y="114" text-anchor="middle" fill="#58a6ff" font-weight="600" font-size="8">equity</text>
