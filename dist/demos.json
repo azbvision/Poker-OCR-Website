@@ -16,7 +16,7 @@
   },
   {
     "title": "Poker real-time hand history with Monker Solver and GTO-style play",
-    "description": "Live demo of table OCR, hand history extraction, and Monker Solver–driven GTO suggestions on a desktop client",
+    "description": "Live demo of table OCR, hand history extraction, and Monker Solver–driven GTO outputs on a desktop client",
     "videoUrl": "videos/PLO4 BOT with Monker Solver.mp4"
   }
 ]
